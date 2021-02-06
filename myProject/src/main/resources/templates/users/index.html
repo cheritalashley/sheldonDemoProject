@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.name}"></td>
+        <td><input type="checkbox" name="userIds" th:value="${user.id}" class="form-control">
+        </td>
+    </tr>
+</table>
+<p th:unless="${users.size()}" class="colorFont">No Users!!! Use the Add User Link to add some users.</p>
+<input type="submit" value="Delete" class="btn btn-danger">
+<p th:text="${deleteError}" class="error"></p>
+</form>
+</body>
+</html>
